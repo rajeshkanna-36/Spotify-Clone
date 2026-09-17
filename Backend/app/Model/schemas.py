@@ -18,5 +18,16 @@ class Token(BaseModel):
     token_type: str
 
 
+class UserProfile(BaseModel):
+    user_id: int
+    user_name: str
+    email_id: str
+    mobile_number: Optional[str] = None
+    date_of_birth: Optional[date] = None
+
+    class Config:
+        from_attributes = True
+
+
 class RefreshTokenRequest(BaseModel):
     refresh_token: str

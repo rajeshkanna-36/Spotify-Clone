@@ -26,7 +26,11 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
 
+    max_user_id = db.query(User.user_id).order_by(User.user_id.desc()).first()
+    next_user_id = (max_user_id[0] if max_user_id else 0) + 1
+
     new_user = User(
+        user_id=next_user_id,
         user_name=user.user_name,
         email_id=user.email_id,
         mobile_number=user.mobile_number,

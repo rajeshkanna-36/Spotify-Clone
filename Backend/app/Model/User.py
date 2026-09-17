@@ -7,7 +7,7 @@ from app.database import Base
 class User(Base):
     __tablename__ = "User"
 
-    user_id = Column(BigInteger, primary_key=True, index=True)
+    user_id = Column(BigInteger, primary_key=True, index=True, autoincrement=True)
     user_name = Column(Text, nullable=False)
     email_id = Column(Text, nullable=False, unique=True)
     mobile_number = Column(Text, nullable=True)
